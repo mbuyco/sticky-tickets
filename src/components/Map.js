@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker.js'
 
-const { GOOGLE_API_KEY } = require('../config').env
+const { REACT_APP_GOOGLE_API_KEY } = process.env
 
 class Map extends Component {
   static defaultProps = {
@@ -24,7 +24,7 @@ class Map extends Component {
     return (
       <div className="Map" style={{ height: '100vh', width: '70%', float: 'right' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
+          bootstrapURLKeys={{ key: REACT_APP_GOOGLE_API_KEY }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >

@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react'
 import request from 'request-promise'
 import { events } from '../data/events.json'
 
-const { GOOGLE_API_KEY } = require('../config').env
+const { REACT_APP_GOOGLE_API_KEY } = process.env
 
 class MapMarker extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class MapMarker extends Component {
     if (!events.length)
       return
 
-    const uri = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${GOOGLE_API_KEY}`
+    const uri = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${REACT_APP_GOOGLE_API_KEY}`
     const options = {
       json: true,
       uri
