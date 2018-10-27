@@ -1,35 +1,24 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react'
-import MapMarker from './MapMarker.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 const { REACT_APP_GOOGLE_API_KEY } = process.env
 
 class Map extends Component {
-  static defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33
-    },
-    zoom: 11
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeMarker: null
-    }
-  }
-
   render() {
+    const MapMarker = () => <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" color="red" />
+
     return (
-      <div className="Map" style={{ height: '100vh', width: '70%', float: 'right' }}>
+      <div className="Map" style={{ float: 'right', width: '75%', height: '100vh' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: REACT_APP_GOOGLE_API_KEY }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
+          defaultCenter={this.props.defaultCenter}
+          center={this.props.center}
+          zoom={this.props.zoom}
         >
+          <MapMarker lat={this.props.lat} lng={this.props.lng} />
         </GoogleMapReact>
-        <MapMarker />
       </div>
     );
   }

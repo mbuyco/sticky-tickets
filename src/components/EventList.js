@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import EventListButton from './EventListButton'
+import { events } from '../data/events.json'
 
 class EventList extends Component {
+  eventList() {
+    return events.map((event, index) => {
+      const activeStyle = index === this.props.activeEventIndex
+        ? { color: 'red', fontWeight: 'bold' }
+        : {}
+      return <li key={event.id} style={activeStyle}>{event.name}</li>
+    })
+  }
+
   render() {
     return (
-      <div className="EventList" style={{ width: '30%', float: 'left' }}>
-        <p>Event list here</p>
-        <EventListButton />
+      <div className="EventList">
+        <ul>
+          {this.eventList()}
+        </ul>
       </div>
     );
   }
